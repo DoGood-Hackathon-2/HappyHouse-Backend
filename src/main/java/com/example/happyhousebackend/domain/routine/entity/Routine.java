@@ -2,7 +2,6 @@ package com.example.happyhousebackend.domain.routine.entity;
 
 import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -35,10 +34,11 @@ public class Routine {
     private Member member;
 
     @Builder.Default
-    @Column(nullable = false)
+    @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
 
-    @LastModifiedDate
-    private LocalDateTime updatedDate;
+    @Builder.Default
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate = LocalDateTime.now();
 
 }

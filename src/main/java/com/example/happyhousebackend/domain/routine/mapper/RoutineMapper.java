@@ -10,8 +10,6 @@ import org.mapstruct.Mapping;
 public interface RoutineMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdDate", ignore = true)
-    @Mapping(target = "updatedDate", ignore = true)
     Routine toEntity(RoutineRequestDto requestDto, Member member);
 
 }

@@ -1,8 +1,6 @@
 package com.example.happyhousebackend.domain.routine.service;
 
-import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
-import com.example.happyhousebackend.domain.routine.entity.RoutineCompleted;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.repository.RoutineRepository;
 import lombok.RequiredArgsConstructor;

@@ -5,7 +5,6 @@ import com.example.happyhousebackend.domain.routine.entity.Routine;
 import com.example.happyhousebackend.domain.routine.entity.RoutineCompleted;
 import com.example.happyhousebackend.domain.routine.entity.RoutineCompletedPK;
 import com.example.happyhousebackend.domain.routine.repository.RoutineCompletedRepository;
-import com.example.happyhousebackend.domain.routine.repository.RoutineRepeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
