@@ -10,12 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(NullPointerException.class)
-    protected ResponseEntity<ResponseMessage> nullPointerException(IllegalArgumentException e) {
-        log.error("NullPointerException  " + e.getMessage());
-        return ResponseEntity.badRequest().body(ResponseMessage.of("NullPointerException"));
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     protected ResponseEntity<ResponseMessage> handleIllegalArgumentException(IllegalArgumentException e) {
         log.error("IllegalArgumentException " + e.getMessage());

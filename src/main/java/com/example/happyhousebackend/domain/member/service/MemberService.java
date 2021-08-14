@@ -44,10 +44,11 @@ public class MemberService {
     @Transactional
     public MemberResponseDto findFamily(Long memberId) {
         Member member = findById(memberId);
-        Family family = familyRepository.findById(member.getFamily().getId())
-                .orElseThrow(() -> new IllegalArgumentException("가족 구성원이 존재하지 않습니다."));
+        if (member.getFamily() == null) {
+            throw new IllegalArgumentException("가족 구성원이 존재하지 않습니다.");
+        }
 
-        List<MemberDto> memberList = memberRepository.findAllByFamilyId(family.getId())
+        List<MemberDto> memberList = memberRepository.findAllByFamilyId(member.getFamily().getId())
                 .stream()
                 .filter(m -> m != member)
                 .map(Member::entityToDto)
