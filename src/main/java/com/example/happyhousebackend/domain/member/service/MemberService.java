@@ -55,7 +55,6 @@ public class MemberService {
                 .collect(Collectors.toList());
 
         return MemberResponseDto.builder()
-                .message("정상")
                 .memberList(memberList)
                 .build();
     }

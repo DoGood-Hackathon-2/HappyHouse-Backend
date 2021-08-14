@@ -40,6 +40,12 @@ public class RoutineController {
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineCompletedService.getRoutineCommentList(requestDto.getTitle(), member)));
     }
 
+    @GetMapping("/{memberId}/routines/{routineId}")
+    public ResponseEntity<ResponseMessage> getRoutineDetail(@PathVariable Long memberId, @PathVariable Long routineId) {
+        Member member = memberService.findById(memberId);
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineService.getRoutineDetail(routineId, member)));
+    }
+
     @PostMapping("/{memberId}/routine/{routineId}/complete")
     public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
         routineService.createRoutine(memberId, routineId, createDto);

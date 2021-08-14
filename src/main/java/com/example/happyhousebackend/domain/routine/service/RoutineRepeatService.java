@@ -31,6 +31,10 @@ public class RoutineRepeatService {
         );
     }
 
+    public List<Integer> getDayList(Routine routine) {
+        return routineRepeatRepository.findAllByRoutine(routine).stream().map(RoutineRepeat::getDay).collect(Collectors.toList());
+    }
+
     public RoutineListDto getRoutineRepeatList(Member member) {
         List<RoutineRepeatDto> repeatRoutineList = new ArrayList<>();
         List<RoutineRepeatDto> notRepeatRoutineList = new ArrayList<>();
@@ -50,8 +54,7 @@ public class RoutineRepeatService {
                                 .date(routine.getStartDate())
                                 .build()
                         );
-                    }
-                    else {
+                    } else {
                         notRepeatRoutineList.add(RoutineRepeatDto.builder()
                                 .id(routine.getId())
                                 .title(routine.getTitle())

@@ -15,6 +15,6 @@ import java.util.List;
 @Builder
 public class MemberResponseDto {
 
-    private String message;
     private List<MemberList> memberList;
+
 }
