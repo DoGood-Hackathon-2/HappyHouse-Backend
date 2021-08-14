@@ -1,5 +1,9 @@
-package com.example.happyhousebackend.domain.member.controller.dto;
+package com.example.happyhousebackend.domain.member.controller;
 
+import com.example.happyhousebackend.domain.member.controller.dto.MemberRequestDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MyMemberRequestDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
