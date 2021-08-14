@@ -25,7 +25,7 @@ public class RoutineController {
 
     private final RoutineMapper routineMapper;
 
-    @PostMapping("/{memberId}/routine")
+    @PostMapping("/{memberId}/routines")
     public ResponseEntity<ResponseMessage> saveRoutine(@RequestBody RoutineRequestDto requestDto, @PathVariable Long memberId) {
         Member member = memberService.findById(memberId); // 원래는 인증으로 빼야 함.
         requestDto.getMemberList().add(memberId);
@@ -45,7 +45,7 @@ public class RoutineController {
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineService.getRoutineDetail(routineId, member)));
     }
 
-    @PostMapping("/{memberId}/routine/{routineId}/complete")
+    @PostMapping("/{memberId}/routines/{routineId}/complete")
     public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
         routineService.createRoutine(memberId, routineId, createDto);
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_COMPLETE_ROUTINE));
