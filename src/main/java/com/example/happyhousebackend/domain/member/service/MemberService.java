@@ -64,7 +64,7 @@ public class MemberService {
     }
 
     @Transactional
-    public MyMemberResponseDto findMyPage(Long memberId, MyMemberRequestDto requestDto) {
+    public MyMemberResponseDto findMyPage(Long memberId) {
         Member me = findById(memberId);
         Family family = familyRepository.findById(me.getFamily().getId())
                 .orElseThrow(() -> new IllegalArgumentException("가족 구성원이 존재하지 않습니다."));

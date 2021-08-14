@@ -29,7 +29,7 @@ public class MemberServiceTest {
                 .orElseThrow(() -> new IllegalArgumentException("가족 구성원이 존재하지 않습니다."));
 
         // when
-        MyMemberResponseDto dto = memberService.findMyPage(1L, null);
+        MyMemberResponseDto dto = memberService.findMyPage(1L);
 
         // then
         assertThat(dto.getFamilyName()).isEqualTo(family.getName());
