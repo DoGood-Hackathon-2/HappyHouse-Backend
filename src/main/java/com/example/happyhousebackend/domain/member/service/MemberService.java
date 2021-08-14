@@ -51,8 +51,11 @@ public class MemberService {
 
         List<MemberList> memberList = memberRepository.findAllByFamilyId(family.getId())
                 .stream()
+                .filter(m -> m != member)
                 .map(Member::entityToDto)
                 .collect(Collectors.toList());
+
+        memberList.add(MemberList.builder().id(memberId).image(member.getImage()).nickname("나").build());
 
         return MemberResponseDto.builder()
                 .memberList(memberList)
