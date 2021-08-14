@@ -14,30 +14,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_GET_MEMBER_LIST;
 import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_GET_MY_PAGE;
 
 @RequiredArgsConstructor
-@RequestMapping("/api")
 @RestController
+@RequestMapping("/api")
 public class MemberController {
 
     private final MemberService memberService;
 
     @PatchMapping("/member/{memberId}")
     public ResponseEntity<ResponseMessage> registerMember(@RequestBody MemberRequestDto requestDto, @PathVariable Long memberId) {
-        ResponseMessage responseMessage = memberService.registerMember(requestDto, memberId);
-        return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
+        memberService.registerMember(requestDto, memberId);
+        return ResponseEntity.ok().body(ResponseMessage.of(null));
     }
 
     @GetMapping("/{memberId}/family")
-    public ResponseEntity<MemberResponseDto> findFamily(@PathVariable Long memberId) {
-        MemberResponseDto dto = memberService.findFamily(memberId);
-        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    public ResponseEntity<ResponseMessage> findFamily(@PathVariable Long memberId) {
+        return ResponseEntity.ok().body(ResponseMessage.of(SUCCESS_GET_MEMBER_LIST, memberService.findFamily(memberId)));
     }
 
     @GetMapping("/{memberId}/mypage")
     public ResponseEntity<ResponseMessage> findMyPage(@PathVariable Long memberId) {
-        return ResponseEntity.status(HttpStatus.OK).body(ResponseMessage.of(SUCCESS_GET_MY_PAGE, memberService.findMyPage(memberId)));
+        return ResponseEntity.ok().body(ResponseMessage.of(SUCCESS_GET_MY_PAGE, memberService.findMyPage(memberId)));
     }
 
 }

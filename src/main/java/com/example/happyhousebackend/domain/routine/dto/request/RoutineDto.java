@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class RoutineList {
+public class RoutineDto {
 
     private String title;
 

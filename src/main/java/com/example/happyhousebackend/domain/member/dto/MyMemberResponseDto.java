@@ -22,7 +22,7 @@ public class MyMemberResponseDto {
 
     private int routineRate;
 
-    private List<MemberList> memberList;
+    private List<MemberDto> memberList;
 
     private RoutineListDto routine;
 

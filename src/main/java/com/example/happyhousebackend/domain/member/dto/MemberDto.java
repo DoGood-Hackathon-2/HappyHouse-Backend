@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
-public class MemberList {
+public class MemberDto {
 
     private Long id;
     private String nickname;

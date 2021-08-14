@@ -11,7 +11,6 @@ import com.example.happyhousebackend.domain.routine.service.RoutineService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import com.example.happyhousebackend.domain.util.SuccessMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +48,6 @@ public class RoutineController {
     @PostMapping("/{memberId}/routine/{routineId}/complete")
     public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
         routineService.createRoutine(memberId, routineId, createDto);
-        return ResponseEntity.status(HttpStatus.OK).body(ResponseMessage.of(SuccessMessage.SUCCESS_COMPLETE_ROUTINE));
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_COMPLETE_ROUTINE));
     }
 }

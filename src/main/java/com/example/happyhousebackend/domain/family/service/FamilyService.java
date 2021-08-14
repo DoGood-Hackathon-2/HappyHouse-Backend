@@ -19,7 +19,7 @@ public class FamilyService {
     private final MemberService memberService;
 
     @Transactional
-    public ResponseMessage registerFamilyName(FamilyNameRequestDto requestDto, Long memberId) {
+    public Long registerFamilyName(FamilyNameRequestDto requestDto, Long memberId) {
         Assert.notNull(requestDto.getName(), "family name must not be null!");
         Assert.notNull(memberId, "memberId must not be null!");
 
@@ -30,7 +30,6 @@ public class FamilyService {
 
         member.setFamily(family);
         familyRepository.save(family);
-
-        return ResponseMessage.of("정상", family.getId());
+        return family.getId();
     }
 }

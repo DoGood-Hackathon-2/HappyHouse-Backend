@@ -1,7 +1,7 @@
 package com.example.happyhousebackend.domain.member.entity;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
-import com.example.happyhousebackend.domain.member.dto.MemberList;
+import com.example.happyhousebackend.domain.member.dto.MemberDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,8 +47,8 @@ public class Member {
         this.image = image;
     }
 
-    public static MemberList entityToDto(Member entity) {
-        return MemberList.builder()
+    public static MemberDto entityToDto(Member entity) {
+        return MemberDto.builder()
                 .id(entity.getId())
                 .nickname(entity.getNickname())
                 .image(entity.getImage())

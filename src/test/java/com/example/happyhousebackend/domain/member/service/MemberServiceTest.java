@@ -34,7 +34,7 @@ public class MemberServiceTest {
         // then
         assertThat(dto.getFamilyName()).isEqualTo(family.getName());
 
-        System.out.println(dto.getMemberList());
+        System.out.println(dto.getMemberDto());
         System.out.println(dto.getCompleteRoutineList());
         System.out.println(dto.getNotCompleteRoutineList());
     }

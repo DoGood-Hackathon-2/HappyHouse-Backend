@@ -2,7 +2,7 @@ package com.example.happyhousebackend.domain.member.service;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.family.repository.FamilyRepository;
-import com.example.happyhousebackend.domain.member.dto.MemberList;
+import com.example.happyhousebackend.domain.member.dto.MemberDto;
 import com.example.happyhousebackend.domain.member.dto.MemberRequestDto;
 import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
 import com.example.happyhousebackend.domain.member.dto.MyMemberResponseDto;
@@ -10,7 +10,6 @@ import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.repository.MemberRepository;
 import com.example.happyhousebackend.domain.routine.dto.response.RoutineListDto;
 import com.example.happyhousebackend.domain.routine.service.RoutineRepeatService;
-import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,13 +33,12 @@ public class MemberService {
     }
 
     @Transactional
-    public ResponseMessage registerMember(MemberRequestDto requestDto, Long memberId) {
+    public void registerMember(MemberRequestDto requestDto, Long memberId) {
         Member member = findById(memberId);
         member.changeNickname(requestDto.getNickname());
         member.changeImage(requestDto.getImage());
 
         memberRepository.save(member);
-        return ResponseMessage.of("정상");
     }
 
     @Transactional
@@ -49,13 +47,13 @@ public class MemberService {
         Family family = familyRepository.findById(member.getFamily().getId())
                 .orElseThrow(() -> new IllegalArgumentException("가족 구성원이 존재하지 않습니다."));
 
-        List<MemberList> memberList = memberRepository.findAllByFamilyId(family.getId())
+        List<MemberDto> memberList = memberRepository.findAllByFamilyId(family.getId())
                 .stream()
                 .filter(m -> m != member)
                 .map(Member::entityToDto)
                 .collect(Collectors.toList());
 
-        memberList.add(MemberList.builder().id(memberId).image(member.getImage()).nickname("나").build());
+        memberList.add(MemberDto.builder().id(memberId).image(member.getImage()).nickname("나").build());
 
         return MemberResponseDto.builder()
                 .memberList(memberList)
@@ -71,7 +69,7 @@ public class MemberService {
         String familyName = family.getName();
         String nickname = "나";
 
-        List<MemberList> memberList = memberRepository.findAllByFamilyId(family.getId())
+        List<MemberDto> memberList = memberRepository.findAllByFamilyId(family.getId())
                 .stream()
                 .map(Member::entityToDto)
                 .collect(Collectors.toList());
