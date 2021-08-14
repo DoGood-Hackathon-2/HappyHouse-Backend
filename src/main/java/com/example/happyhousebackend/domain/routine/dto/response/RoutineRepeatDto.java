@@ -12,6 +12,8 @@ import java.util.List;
 @Builder
 public class RoutineRepeatDto {
 
+    private Long id;
+
     private String title;
 
     private String subTitle;

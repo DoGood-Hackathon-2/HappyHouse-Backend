@@ -40,6 +40,7 @@ public class RoutineRepeatService {
                 .forEach(routine -> {
                     if (routineRepeatRepository.existsAllByRoutine(routine)) {
                         repeatRoutineList.add(RoutineRepeatDto.builder()
+                                .id(routine.getId())
                                 .title(routine.getTitle())
                                 .dayList(routine.getRoutineRepeatList().stream().map(RoutineRepeat::getDay).collect(Collectors.toList()))
                                 .subTitle(routine.getSubTitle())
@@ -52,6 +53,7 @@ public class RoutineRepeatService {
                     }
                     else {
                         notRepeatRoutineList.add(RoutineRepeatDto.builder()
+                                .id(routine.getId())
                                 .title(routine.getTitle())
                                 .subTitle(routine.getSubTitle())
                                 .time(routine.getTime())
