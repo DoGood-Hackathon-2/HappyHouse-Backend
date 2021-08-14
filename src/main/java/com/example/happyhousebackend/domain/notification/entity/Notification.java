@@ -1,7 +1,7 @@
-package com.example.happyhousebackend.domain.notification;
+package com.example.happyhousebackend.domain.notification.entity;
 
-import com.example.happyhousebackend.domain.member.Member;
-import com.example.happyhousebackend.domain.routine.Routine;
+import com.example.happyhousebackend.domain.member.entity.Member;
+import com.example.happyhousebackend.domain.routine.entity.Routine;
 import lombok.*;
 
 import javax.persistence.*;

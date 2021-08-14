@@ -1,6 +1,6 @@
-package com.example.happyhousebackend.domain.routine;
+package com.example.happyhousebackend.domain.routine.entity;
 
-import com.example.happyhousebackend.domain.member.Member;
+import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 

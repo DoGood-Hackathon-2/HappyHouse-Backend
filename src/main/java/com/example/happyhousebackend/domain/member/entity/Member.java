@@ -1,6 +1,6 @@
-package com.example.happyhousebackend.domain.member;
+package com.example.happyhousebackend.domain.member.entity;
 
-import com.example.happyhousebackend.domain.family.Family;
+import com.example.happyhousebackend.domain.family.entity.Family;
 import lombok.*;
 
 import javax.persistence.*;

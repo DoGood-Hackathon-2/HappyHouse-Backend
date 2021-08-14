@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.routine;
+package com.example.happyhousebackend.domain.routine.entity;
 
 import lombok.*;
 
