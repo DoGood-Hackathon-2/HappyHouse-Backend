@@ -1,5 +1,6 @@
 package com.example.happyhousebackend.domain.routine.mapper;
 
+import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
 import org.junit.jupiter.api.Test;
@@ -20,13 +21,14 @@ class RoutineMapperTest {
     @Autowired
     private RoutineMapper routineMapper;
 
-
     private final String title = "테스트";
     private final String subTitle = "요청 메세지";
     private final LocalTime time = LocalTime.now();
     private final LocalDate startDate = LocalDate.now();
     private final List<Integer> dayList = List.of(1, 2, 3);
     private final List<Long> memberList = List.of(2L, 3L);
+
+    Member member = Member.builder().build();
 
     final RoutineRequestDto requestDto = RoutineRequestDto.builder()
             .title(title)
@@ -42,17 +44,19 @@ class RoutineMapperTest {
             .title(title)
             .subTitle(subTitle)
             .time(time)
+            .member(member)
             .startDate(startDate)
             .build();
 
     @Test
     void toEntity_테스트() {
-        final Routine mappedEntity = routineMapper.toEntity(requestDto);
+        final Routine mappedEntity = routineMapper.toEntity(requestDto, member);
 
         assertThat(routine.getTitle(), is(mappedEntity.getTitle()));
         assertThat(routine.getSubTitle(), is(requestDto.getSubTitle()));
         assertThat(routine.getTime(), is(requestDto.getTime()));
         assertThat(routine.getStartDate(), is(requestDto.getStartDate()));
+        assertThat(routine.getMember(), is(member));
     }
 
 }

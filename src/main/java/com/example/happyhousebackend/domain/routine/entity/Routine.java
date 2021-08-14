@@ -1,7 +1,7 @@
 package com.example.happyhousebackend.domain.routine.entity;
 
+import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
@@ -29,6 +29,10 @@ public class Routine {
     private LocalDate startDate;
 
     private LocalTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "requester_id")
+    private Member member;
 
     @Builder.Default
     @Column(nullable = false)

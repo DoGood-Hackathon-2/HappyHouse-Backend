@@ -1,5 +1,6 @@
 package com.example.happyhousebackend.domain.routine.mapper;
 
+import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
 import org.mapstruct.Mapper;
@@ -11,6 +12,6 @@ public interface RoutineMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdDate", ignore = true)
     @Mapping(target = "updatedDate", ignore = true)
-    Routine toEntity(RoutineRequestDto requestDto);
+    Routine toEntity(RoutineRequestDto requestDto, Member member);
 
 }
