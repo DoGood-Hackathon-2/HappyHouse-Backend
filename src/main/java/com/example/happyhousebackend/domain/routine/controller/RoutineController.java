@@ -2,8 +2,10 @@ package com.example.happyhousebackend.domain.routine.controller;
 
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.service.MemberService;
+import com.example.happyhousebackend.domain.routine.dto.RoutineCommentRequestDto;
 import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
+import com.example.happyhousebackend.domain.routine.service.RoutineCompletedService;
 import com.example.happyhousebackend.domain.routine.service.RoutineService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import com.example.happyhousebackend.domain.util.SuccessMessage;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class RoutineController {
 
     private final RoutineService routineService;
+    private final RoutineCompletedService routineCompletedService;
     private final MemberService memberService;
 
     private final RoutineMapper routineMapper;
@@ -29,4 +32,9 @@ public class RoutineController {
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_SAVE_ROUTINE));
     }
 
+    @GetMapping("/{memberId}/routines")
+    public ResponseEntity<ResponseMessage> getRoutineCommentList(@RequestBody RoutineCommentRequestDto requestDto, @PathVariable Long memberId) {
+        Member member = memberService.findById(memberId);
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineCompletedService.getRoutineCommentList(requestDto.getTitle(), member)));
+    }
 }
