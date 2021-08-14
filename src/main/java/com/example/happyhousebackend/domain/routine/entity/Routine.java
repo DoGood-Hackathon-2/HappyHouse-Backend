@@ -30,9 +30,9 @@ public class Routine {
 
     private LocalTime time;
 
-    @CreatedDate
+    @Builder.Default
     @Column(nullable = false)
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @LastModifiedDate
     private LocalDateTime updatedDate;
