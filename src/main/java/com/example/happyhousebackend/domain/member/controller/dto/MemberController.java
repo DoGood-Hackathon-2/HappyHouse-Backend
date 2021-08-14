@@ -31,4 +31,10 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
+    @GetMapping("/{memberId}/mypage")
+    public ResponseEntity<MyMemberResponseDto> findMyPage(@PathVariable Long memberId, @RequestBody MyMemberRequestDto requestDto) {
+        MyMemberResponseDto dto = memberService.findMyPage(memberId, requestDto);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
+
 }

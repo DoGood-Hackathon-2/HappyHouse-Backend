@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface RoutineCompletedRepository extends JpaRepository<RoutineCompleted, RoutineCompletedPK> {
     List<RoutineCompleted> findRoutineCompletedsByIdRoutineId(Long routineId);
+
+    List<RoutineCompleted> findRoutineCompletedByMemberId(Long memberId);
 }
