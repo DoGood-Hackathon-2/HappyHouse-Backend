@@ -1,7 +1,6 @@
 package com.example.happyhousebackend.domain.routine.service;
 
 import com.example.happyhousebackend.domain.routine.entity.Routine;
-import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.repository.RoutineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,6 @@ import java.util.List;
 public class RoutineService {
 
     private final RoutineRepository routineRepository;
-
-    private final RoutineMapper routineMapper;
 
     private final RoutineRepeatService routineRepeatService;
 
