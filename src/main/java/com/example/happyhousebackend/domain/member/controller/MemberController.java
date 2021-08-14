@@ -1,5 +1,9 @@
-package com.example.happyhousebackend.domain.member.controller.dto;
+package com.example.happyhousebackend.domain.member.controller;
 
+import com.example.happyhousebackend.domain.member.controller.dto.MemberRequestDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MyMemberRequestDto;
+import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +32,12 @@ public class MemberController {
     @GetMapping("/{memberId}/family")
     public ResponseEntity<MemberResponseDto> findFamily(@PathVariable Long memberId) {
         MemberResponseDto dto = memberService.findFamily(memberId);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
+
+    @GetMapping("/{memberId}/mypage")
+    public ResponseEntity<MyMemberResponseDto> findMyPage(@PathVariable Long memberId, @RequestBody MyMemberRequestDto requestDto) {
+        MyMemberResponseDto dto = memberService.findMyPage(memberId, requestDto);
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 

@@ -11,8 +11,11 @@ public interface RoutineCompletedRepository extends JpaRepository<RoutineComplet
 
     List<RoutineCompleted> findRoutineCompletedsByIdRoutineId(Long routineId);
 
+    List<RoutineCompleted> findRoutineCompletedByMemberId(Long memberId);
+
     @Query(value = "SELECT rc.member.nickname, rc.member.image, rc.image, rc.comment " +
                    "FROM RoutineCompleted rc " +
                    "LEFT JOIN Routine r ON r.title=?1 AND r.id=rc.routine.id WHERE rc.family.id=?2 AND rc.isCompleted=true")
     List<Object[]> findTest(String title, Long familyId);
+
 }
