@@ -2,6 +2,7 @@ package com.example.happyhousebackend.domain.routine.controller;
 
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.service.MemberService;
+import com.example.happyhousebackend.domain.routine.controller.dto.RoutineCreateDto;
 import com.example.happyhousebackend.domain.routine.dto.RoutineCommentRequestDto;
 import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
@@ -10,6 +11,7 @@ import com.example.happyhousebackend.domain.routine.service.RoutineService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import com.example.happyhousebackend.domain.util.SuccessMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +38,11 @@ public class RoutineController {
     public ResponseEntity<ResponseMessage> getRoutineCommentList(@RequestBody RoutineCommentRequestDto requestDto, @PathVariable Long memberId) {
         Member member = memberService.findById(memberId);
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineCompletedService.getRoutineCommentList(requestDto.getTitle(), member)));
+    }
+
+    @PostMapping("/{memberId}/routine/{routineId}/complete")
+    public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
+        routineService.createRoutine(memberId, routineId, createDto);
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseMessage.of(SuccessMessage.SUCCESS_COMPLETE_ROUTINE));
     }
 }

@@ -43,4 +43,15 @@ public class RoutineCompleted {
     @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
 
+    public void setCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
