@@ -1,8 +1,8 @@
 package com.example.happyhousebackend.domain.routine.entity;
 
+import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -28,7 +28,14 @@ public class RoutineCompleted {
     private Member member;
 
     @Column(name = "is_completed")
-    @ColumnDefault(value = "0")
     private boolean isCompleted;
+
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private Family family;
+
+    private String image;
+
+    private String comment;
 
 }

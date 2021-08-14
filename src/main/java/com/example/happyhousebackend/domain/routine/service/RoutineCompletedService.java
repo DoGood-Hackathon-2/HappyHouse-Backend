@@ -28,9 +28,11 @@ public class RoutineCompletedService {
                     .id(routineCompletedPK)
                     .member(memberRepository.getById(memberId))
                     .routine(routine)
+                    .family(routine.getFamily())
                     .build();
 
             routineCompletedRepository.save(routineCompleted);
         });
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.happyhousebackend.domain.routine.entity;
 
+import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
 
@@ -32,6 +33,10 @@ public class Routine {
     @ManyToOne
     @JoinColumn(name = "requester_id")
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    private Family family;
 
     @Builder.Default
     @Column(name = "created_date", updatable = false)
