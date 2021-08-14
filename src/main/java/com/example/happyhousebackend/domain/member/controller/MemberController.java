@@ -2,8 +2,6 @@ package com.example.happyhousebackend.domain.member.controller;
 
 import com.example.happyhousebackend.domain.member.controller.dto.MemberRequestDto;
 import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
-import com.example.happyhousebackend.domain.member.controller.dto.MyMemberRequestDto;
-import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_GET_MY_PAGE;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -36,9 +36,8 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}/mypage")
-    public ResponseEntity<MyMemberResponseDto> findMyPage(@PathVariable Long memberId) {
-        MyMemberResponseDto dto = memberService.findMyPage(memberId);
-        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    public ResponseEntity<ResponseMessage> findMyPage(@PathVariable Long memberId) {
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseMessage.of(SUCCESS_GET_MY_PAGE, memberService.findMyPage(memberId)));
     }
 
 }

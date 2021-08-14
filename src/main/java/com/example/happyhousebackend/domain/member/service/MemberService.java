@@ -5,20 +5,16 @@ import com.example.happyhousebackend.domain.family.repository.FamilyRepository;
 import com.example.happyhousebackend.domain.member.controller.dto.MemberList;
 import com.example.happyhousebackend.domain.member.controller.dto.MemberRequestDto;
 import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
-import com.example.happyhousebackend.domain.member.controller.dto.MyMemberRequestDto;
 import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.repository.MemberRepository;
-import com.example.happyhousebackend.domain.routine.controller.dto.RoutineList;
-import com.example.happyhousebackend.domain.routine.entity.Routine;
-import com.example.happyhousebackend.domain.routine.entity.RoutineCompleted;
-import com.example.happyhousebackend.domain.routine.repository.RoutineCompletedRepository;
+import com.example.happyhousebackend.domain.routine.dto.response.RoutineListDto;
+import com.example.happyhousebackend.domain.routine.service.RoutineRepeatService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,9 +22,10 @@ import java.util.stream.Collectors;
 @Service
 public class MemberService {
 
+    private final RoutineRepeatService routineRepeatService;
+
     private final FamilyRepository familyRepository;
     private final MemberRepository memberRepository;
-    private final RoutineCompletedRepository routineCompletedRepository;
 
     @Transactional(readOnly = true)
     public Member findById(Long memberId) {
@@ -77,32 +74,13 @@ public class MemberService {
                 .map(Member::entityToDto)
                 .collect(Collectors.toList());
 
-        List<RoutineCompleted> routineCompletedList = routineCompletedRepository.findRoutineCompletedByMemberId(memberId);
-        List<RoutineList> notCompleteRoutineList = new ArrayList<>();
-        List<RoutineList> completeRoutineList = new ArrayList<>();
-
-        for (int i = 0; i < routineCompletedList.size(); i++) {
-            Routine routine = routineCompletedList.get(i).getRoutine();
-            RoutineList routineList = RoutineList.builder()
-                    .title(routine.getTitle())
-                    .subTitle(routine.getSubTitle())
-                    .startDate(routine.getStartDate())
-                    .build();
-
-            if (routineCompletedList.get(i).isCompleted()) {
-                completeRoutineList.add(routineList);
-            } else {
-                notCompleteRoutineList.add(routineList);
-            }
-        }
+        RoutineListDto routineList = routineRepeatService.getRoutineRepeatList(me);
         return MyMemberResponseDto.builder()
-                .message("정상")
                 .familyName(familyName)
                 .nickname(nickname)
-                .routineRate(routineCompletedList.size() + completeRoutineList.size())
+                .routineRate(routineList.getRepeatList().size() + routineList.getNotRepeatList().size())
                 .memberList(memberList)
-                .notCompleteRoutineList(notCompleteRoutineList)
-                .completeRoutineList(completeRoutineList)
+                .routine(routineList)
                 .build();
     }
 }
