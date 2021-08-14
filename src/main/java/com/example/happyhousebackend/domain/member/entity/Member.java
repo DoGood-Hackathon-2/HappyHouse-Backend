@@ -1,9 +1,11 @@
 package com.example.happyhousebackend.domain.member.entity;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
+import com.example.happyhousebackend.domain.member.controller.dto.MemberList;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -33,5 +35,25 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "family_id")
     private Family family;
+
+    public void setFamily(Family family) {
+        this.family = family;
+    }
+
+    public void changeNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void changeImage(String image) {
+        this.image = image;
+    }
+
+    public static MemberList entityToDto(Member entity) {
+        return MemberList.builder()
+                .id(entity.getId())
+                .nickname(entity.getNickname())
+                .image(entity.getImage())
+                .build();
+    }
 
 }
