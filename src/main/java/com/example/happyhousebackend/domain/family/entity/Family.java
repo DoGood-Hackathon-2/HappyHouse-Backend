@@ -22,6 +22,7 @@ public class Family {
 
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "family", cascade = CascadeType.ALL)
     private List<Member> memberList = new ArrayList<>();
 

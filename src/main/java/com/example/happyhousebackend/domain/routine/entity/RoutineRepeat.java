@@ -1,8 +1,6 @@
 package com.example.happyhousebackend.domain.routine.entity;
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,7 +22,7 @@ public class RoutineRepeat {
 
     private int day;
 
-    @ColumnDefault(value = "1")
-    private boolean flag;
+    @Builder.Default
+    private boolean flag = true;
 
 }

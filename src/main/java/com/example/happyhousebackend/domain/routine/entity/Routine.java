@@ -1,11 +1,12 @@
 package com.example.happyhousebackend.domain.routine.entity;
 
+import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -24,15 +25,20 @@ public class Routine {
 
     private String subTitle;
 
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
-    private LocalDateTime finishDate;
+    private LocalTime time;
 
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdDate;
+    @ManyToOne
+    @JoinColumn(name = "requester_id")
+    private Member member;
 
-    @LastModifiedDate
-    private LocalDateTime updatedDate;
+    @Builder.Default
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate = LocalDateTime.now();
+
+    @Builder.Default
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate = LocalDateTime.now();
 
 }
