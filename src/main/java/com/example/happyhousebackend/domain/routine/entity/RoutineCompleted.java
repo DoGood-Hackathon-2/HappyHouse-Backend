@@ -5,6 +5,7 @@ import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -37,5 +38,9 @@ public class RoutineCompleted {
     private String image;
 
     private String comment;
+
+    @Builder.Default
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate = LocalDateTime.now();
 
 }

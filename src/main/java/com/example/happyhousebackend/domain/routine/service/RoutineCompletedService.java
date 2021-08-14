@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class RoutineCompletedService {
                         .memberImage((String) objects[1])
                         .routineImage((String) objects[2])
                         .comment((String) objects[3])
+                        .date((LocalDateTime) objects[4])
                         .build())
         );
         return routineList;
