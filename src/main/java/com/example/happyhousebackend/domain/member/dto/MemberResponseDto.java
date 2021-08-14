@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.member.controller.dto;
+package com.example.happyhousebackend.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

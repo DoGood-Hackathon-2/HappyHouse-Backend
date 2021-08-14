@@ -2,9 +2,9 @@ package com.example.happyhousebackend.domain.routine.controller;
 
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.service.MemberService;
-import com.example.happyhousebackend.domain.routine.controller.dto.RoutineCreateDto;
-import com.example.happyhousebackend.domain.routine.dto.RoutineCommentRequestDto;
-import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineCreateDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineCommentRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.service.RoutineCompletedService;
 import com.example.happyhousebackend.domain.routine.service.RoutineService;

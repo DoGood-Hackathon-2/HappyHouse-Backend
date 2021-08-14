@@ -1,9 +1,9 @@
 package com.example.happyhousebackend.domain.routine.service;
 
-import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.service.MemberService;
-import com.example.happyhousebackend.domain.routine.controller.dto.RoutineCreateDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineCreateDto;
 import com.example.happyhousebackend.domain.routine.dto.response.RoutineDetailDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
 import com.example.happyhousebackend.domain.routine.entity.RoutineCompleted;
@@ -11,7 +11,6 @@ import com.example.happyhousebackend.domain.routine.entity.RoutineCompletedPK;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.repository.RoutineCompletedRepository;
 import com.example.happyhousebackend.domain.routine.repository.RoutineRepository;
-import com.example.happyhousebackend.domain.util.ResponseMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

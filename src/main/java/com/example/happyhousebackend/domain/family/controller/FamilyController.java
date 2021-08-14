@@ -1,6 +1,6 @@
 package com.example.happyhousebackend.domain.family.controller;
 
-import com.example.happyhousebackend.domain.family.controller.dto.FamilyNameRequestDto;
+import com.example.happyhousebackend.domain.family.dto.FamilyNameRequestDto;
 import com.example.happyhousebackend.domain.util.ResponseMessage;
 import com.example.happyhousebackend.domain.family.service.FamilyService;
 import lombok.RequiredArgsConstructor;

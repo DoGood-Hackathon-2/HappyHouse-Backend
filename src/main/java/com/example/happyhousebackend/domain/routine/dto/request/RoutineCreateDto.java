@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.member.controller.dto;
+package com.example.happyhousebackend.domain.routine.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MyMemberRequestDto {
+public class RoutineCreateDto {
 
-    private Long id;
-    private String name;
+    private String image;
+
+    private String comment;
+
 }

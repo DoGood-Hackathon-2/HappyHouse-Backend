@@ -2,7 +2,7 @@ package com.example.happyhousebackend.domain.member.service;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.family.repository.FamilyRepository;
-import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

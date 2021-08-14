@@ -1,6 +1,6 @@
 package com.example.happyhousebackend.domain.family.service;
 
-import com.example.happyhousebackend.domain.family.controller.dto.FamilyNameRequestDto;
+import com.example.happyhousebackend.domain.family.dto.FamilyNameRequestDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.util.ResponseMessage;

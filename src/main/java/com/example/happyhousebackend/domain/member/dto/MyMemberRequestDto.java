@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.family.controller.dto;
+package com.example.happyhousebackend.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FamilyNameRequestDto {
+public class MyMemberRequestDto {
 
+    private Long id;
     private String name;
-
 }

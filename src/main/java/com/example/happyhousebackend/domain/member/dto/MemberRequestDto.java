@@ -1,21 +1,17 @@
-package com.example.happyhousebackend.domain.member.controller.dto;
+package com.example.happyhousebackend.domain.member.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-@ToString
-public class MemberList {
+public class MemberRequestDto {
 
-    private Long id;
+    private Long familyId;
     private String nickname;
     private String image;
 }

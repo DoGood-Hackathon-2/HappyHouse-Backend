@@ -1,6 +1,6 @@
 package com.example.happyhousebackend.domain.routine.dto.response;
 
-import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

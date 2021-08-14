@@ -1,11 +1,10 @@
 package com.example.happyhousebackend.domain.member.entity;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
-import com.example.happyhousebackend.domain.member.controller.dto.MemberList;
+import com.example.happyhousebackend.domain.member.dto.MemberList;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor

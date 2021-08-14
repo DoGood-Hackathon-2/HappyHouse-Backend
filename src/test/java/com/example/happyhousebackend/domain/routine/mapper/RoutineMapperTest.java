@@ -1,7 +1,7 @@
 package com.example.happyhousebackend.domain.routine.mapper;
 
 import com.example.happyhousebackend.domain.member.entity.Member;
-import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class RoutineMapperTest {

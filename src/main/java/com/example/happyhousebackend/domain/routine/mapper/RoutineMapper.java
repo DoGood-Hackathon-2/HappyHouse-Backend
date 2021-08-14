@@ -1,8 +1,8 @@
 package com.example.happyhousebackend.domain.routine.mapper;
 
-import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
-import com.example.happyhousebackend.domain.routine.dto.RoutineRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDto;
 import com.example.happyhousebackend.domain.routine.dto.response.RoutineDetailDto;
 import com.example.happyhousebackend.domain.routine.entity.Routine;
 import org.mapstruct.Mapper;

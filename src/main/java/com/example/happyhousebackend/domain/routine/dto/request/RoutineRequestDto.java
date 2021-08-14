@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.routine.dto;
+package com.example.happyhousebackend.domain.routine.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;

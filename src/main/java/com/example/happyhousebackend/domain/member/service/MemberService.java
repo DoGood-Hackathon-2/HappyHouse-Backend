@@ -2,10 +2,10 @@ package com.example.happyhousebackend.domain.member.service;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.family.repository.FamilyRepository;
-import com.example.happyhousebackend.domain.member.controller.dto.MemberList;
-import com.example.happyhousebackend.domain.member.controller.dto.MemberRequestDto;
-import com.example.happyhousebackend.domain.member.controller.dto.MemberResponseDto;
-import com.example.happyhousebackend.domain.member.controller.dto.MyMemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MemberList;
+import com.example.happyhousebackend.domain.member.dto.MemberRequestDto;
+import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
+import com.example.happyhousebackend.domain.member.dto.MyMemberResponseDto;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import com.example.happyhousebackend.domain.member.repository.MemberRepository;
 import com.example.happyhousebackend.domain.routine.dto.response.RoutineListDto;
