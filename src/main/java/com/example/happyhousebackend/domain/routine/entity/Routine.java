@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -45,5 +47,11 @@ public class Routine {
     @Builder.Default
     @Column(name = "updated_date")
     private LocalDateTime updatedDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "routine")
+    private List<RoutineCompleted> routineCompletedList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "routine", cascade = CascadeType.ALL)
+    private List<RoutineRepeat> routineRepeatList = new ArrayList<>();
 
 }
