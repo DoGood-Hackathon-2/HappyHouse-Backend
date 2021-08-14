@@ -5,7 +5,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -24,9 +26,9 @@ public class Routine {
 
     private String subTitle;
 
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
-    private LocalDateTime finishDate;
+    private LocalTime time;
 
     @CreatedDate
     @Column(nullable = false)
