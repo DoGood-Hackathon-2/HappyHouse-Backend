@@ -1,4 +1,4 @@
-package com.example.happyhousebackend.domain.util;
+package com.example.happyhousebackend.global.message;
 
 public class SuccessMessage {
 

@@ -8,8 +8,8 @@ import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDt
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.service.RoutineCompletedService;
 import com.example.happyhousebackend.domain.routine.service.RoutineService;
-import com.example.happyhousebackend.domain.util.ResponseMessage;
-import com.example.happyhousebackend.domain.util.SuccessMessage;
+import com.example.happyhousebackend.global.message.ResponseMessage;
+import com.example.happyhousebackend.global.message.SuccessMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

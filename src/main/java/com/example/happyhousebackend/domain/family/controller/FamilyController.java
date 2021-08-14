@@ -1,7 +1,7 @@
 package com.example.happyhousebackend.domain.family.controller;
 
 import com.example.happyhousebackend.domain.family.dto.FamilyNameRequestDto;
-import com.example.happyhousebackend.domain.util.ResponseMessage;
+import com.example.happyhousebackend.global.message.ResponseMessage;
 import com.example.happyhousebackend.domain.family.service.FamilyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_SAVE_FAMILY;
+import static com.example.happyhousebackend.global.message.SuccessMessage.SUCCESS_SAVE_FAMILY;
 
 @RequiredArgsConstructor
 @RestController

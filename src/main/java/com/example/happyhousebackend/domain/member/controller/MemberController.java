@@ -1,11 +1,9 @@
 package com.example.happyhousebackend.domain.member.controller;
 
 import com.example.happyhousebackend.domain.member.dto.MemberRequestDto;
-import com.example.happyhousebackend.domain.member.dto.MemberResponseDto;
 import com.example.happyhousebackend.domain.member.service.MemberService;
-import com.example.happyhousebackend.domain.util.ResponseMessage;
+import com.example.happyhousebackend.global.message.ResponseMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_GET_MEMBER_LIST;
-import static com.example.happyhousebackend.domain.util.SuccessMessage.SUCCESS_GET_MY_PAGE;
+import static com.example.happyhousebackend.global.message.SuccessMessage.SUCCESS_GET_MEMBER_LIST;
+import static com.example.happyhousebackend.global.message.SuccessMessage.SUCCESS_GET_MY_PAGE;
 
 @RequiredArgsConstructor
 @RestController
