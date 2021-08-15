@@ -2,6 +2,9 @@
 
 ## 🎯 기획
 
+## 📝 Wiki
+- [API 문서](https://github.com/DoGood-Hackathon-2/HappyHouse-Backend/wiki)
+
 <br>
 
 ## 📆 해커톤 기간
