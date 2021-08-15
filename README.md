@@ -4,6 +4,7 @@
 
 ## 📝 Wiki
 - [API 문서](https://github.com/DoGood-Hackathon-2/HappyHouse-Backend/wiki)
+- [프로젝트 구조](https://github.com/DoGood-Hackathon-2/HappyHouse-Backend/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%84%B1%EB%8F%84)
 
 <br>
 
