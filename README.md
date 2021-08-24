@@ -1,6 +1,12 @@
 # [두굿해커톤 2조](https://event-us.kr/VQSsCeuiDpW2/event/33708)
 
-## 🎯 기획
+## 🎯 서비스 소개
+- 멀리 떨어져있는 가족들의 심리적거리를 좁힐 수 있게 도와주는 서비스
+<br>
+
+## 📝 Wiki
+- [API 문서](https://github.com/DoGood-Hackathon-2/HappyHouse-Backend/wiki)
+- [프로젝트 구조](https://github.com/DoGood-Hackathon-2/HappyHouse-Backend/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
 
 <br>
 
