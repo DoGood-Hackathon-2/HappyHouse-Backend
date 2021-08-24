@@ -1,7 +1,11 @@
 # [두굿해커톤 2조](https://event-us.kr/VQSsCeuiDpW2/event/33708)
 
-## 🎯 서비스 소개
+## 🎯 HAUS 서비스 소개
+- HAUS, 가족 챌린지 공유 앱
 - 멀리 떨어져있는 가족들의 심리적거리를 좁힐 수 있게 도와주는 서비스
+
+![main image](haus_main.png)
+
 <br>
 
 ## 📝 Wiki
