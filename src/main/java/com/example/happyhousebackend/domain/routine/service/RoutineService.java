@@ -38,11 +38,6 @@ public class RoutineService {
         routineRepeatService.saveRepeatDay(routine, dayList);
         // 루틴 구성원 등록
         routineCompletedService.saveRoutineMemberList(routine, memberList);
-
-    }
-
-    private void saveRoutine(Routine routine) {
-        routineRepository.save(routine);
     }
 
     @Transactional
@@ -62,8 +57,27 @@ public class RoutineService {
         routineRepository.save(routine);
     }
 
+    @Transactional
+    public void updateAllRoutine(Routine newRoutine, List<Integer> dayList) {
+        // routine 등록
+        Routine routine = updateRoutine(newRoutine);
+        // 반복 요일 등록
+        routineRepeatService.updateRepeatDay(routine, dayList);
+    }
+
     public Routine getRoutine(Long routineId) {
         return routineRepository.findById(routineId).orElseThrow(IllegalArgumentException::new);
+    }
+
+    private void saveRoutine(Routine routine) {
+        routineRepository.save(routine);
+    }
+
+    private Routine updateRoutine(Routine newRoutine) {
+        Routine routine = routineRepository.findById(newRoutine.getId())
+                .orElseThrow(() -> new IllegalArgumentException("루틴이 존재하지 않습니다."));
+        routine.updateRoutine(newRoutine);
+        return routineRepository.save(routine);
     }
 
     @Transactional(readOnly = true)

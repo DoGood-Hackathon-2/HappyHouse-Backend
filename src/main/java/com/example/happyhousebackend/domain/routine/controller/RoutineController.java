@@ -5,6 +5,7 @@ import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineCreateDto;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineCommentRequestDto;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineUpdateRequestDto;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.service.RoutineCompletedService;
 import com.example.happyhousebackend.domain.routine.service.RoutineService;
@@ -43,6 +44,13 @@ public class RoutineController {
     public ResponseEntity<ResponseMessage> getRoutineDetail(@PathVariable Long memberId, @PathVariable Long routineId) {
         Member member = memberService.findById(memberId);
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineService.getRoutineDetail(routineId, member)));
+    }
+
+    @PutMapping("/{memberId}/routines/{routineId}") // 멤버 변경 X
+    public ResponseEntity<ResponseMessage> updateRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineUpdateRequestDto requestDto) {
+        Member member = memberService.findById(memberId);
+        routineService.updateAllRoutine(routineMapper.toEntity(routineId, requestDto, member), requestDto.getDayList());
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_UPDATE));
     }
 
     @PostMapping("/{memberId}/routines/{routineId}/complete")

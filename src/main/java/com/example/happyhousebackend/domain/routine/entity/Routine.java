@@ -3,6 +3,7 @@ package com.example.happyhousebackend.domain.routine.entity;
 import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.member.entity.Member;
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -41,17 +42,26 @@ public class Routine {
     private Family family;
 
     @Builder.Default
-    @Column(name = "created_date", updatable = false)
+    @Column(name = "created_date", updatable = false, nullable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
 
     @Builder.Default
-    @Column(name = "updated_date")
+    @Column(name = "updated_date", nullable = false)
     private LocalDateTime updatedDate = LocalDateTime.now();
 
+    @Builder.Default
     @OneToMany(mappedBy = "routine")
     private List<RoutineCompleted> routineCompletedList = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "routine", cascade = CascadeType.ALL)
     private List<RoutineRepeat> routineRepeatList = new ArrayList<>();
+
+    public void updateRoutine(Routine newRoutine) {
+        this.title = newRoutine.getTitle();
+        this.subTitle = newRoutine.getSubTitle();
+        this.startDate = newRoutine.getStartDate();
+        this.time = newRoutine.getTime();
+    }
 
 }
