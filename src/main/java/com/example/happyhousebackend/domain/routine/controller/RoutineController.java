@@ -53,6 +53,13 @@ public class RoutineController {
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_UPDATE));
     }
 
+    @DeleteMapping("/{memberId}/routines/{routineId}")
+    public ResponseEntity<ResponseMessage> deleteRoutine(@PathVariable Long memberId, @PathVariable Long routineId) {
+        Member member = memberService.findById(memberId);
+        routineCompletedService.deleteRoutine(routineId, member);
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_DELETE));
+    }
+
     @PostMapping("/{memberId}/routines/{routineId}/complete")
     public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
         routineService.createRoutine(memberId, routineId, createDto);
