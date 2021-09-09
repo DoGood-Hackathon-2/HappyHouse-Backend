@@ -11,4 +11,7 @@ public interface RoutineRepeatRepository extends JpaRepository<RoutineRepeat, Lo
     boolean existsAllByRoutine(Routine routine);
 
     List<RoutineRepeat> findAllByRoutine(Routine routine);
+
+    void deleteRoutineRepeatsByRoutine(Routine routine);
+
 }

@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.example.happyhousebackend.global.message.SuccessMessage.SUCCESS_GET_MEMBER_LIST;
-import static com.example.happyhousebackend.global.message.SuccessMessage.SUCCESS_GET_MY_PAGE;
+import static com.example.happyhousebackend.global.message.SuccessMessage.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,7 +24,7 @@ public class MemberController {
     @PatchMapping("/member/{memberId}")
     public ResponseEntity<ResponseMessage> registerMember(@RequestBody MemberRequestDto requestDto, @PathVariable Long memberId) {
         memberService.registerMember(requestDto, memberId);
-        return ResponseEntity.ok().body(ResponseMessage.of(null));
+        return ResponseEntity.ok().body(ResponseMessage.of(SUCCESS_UPDATE));
     }
 
     @GetMapping("/{memberId}/family")

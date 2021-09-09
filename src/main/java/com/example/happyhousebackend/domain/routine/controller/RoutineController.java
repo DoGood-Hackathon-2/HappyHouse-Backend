@@ -5,6 +5,7 @@ import com.example.happyhousebackend.domain.member.service.MemberService;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineCreateDto;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineCommentRequestDto;
 import com.example.happyhousebackend.domain.routine.dto.request.RoutineRequestDto;
+import com.example.happyhousebackend.domain.routine.dto.request.RoutineUpdateRequestDto;
 import com.example.happyhousebackend.domain.routine.mapper.RoutineMapper;
 import com.example.happyhousebackend.domain.routine.service.RoutineCompletedService;
 import com.example.happyhousebackend.domain.routine.service.RoutineService;
@@ -25,7 +26,7 @@ public class RoutineController {
 
     private final RoutineMapper routineMapper;
 
-    @PostMapping("/{memberId}/routine")
+    @PostMapping("/{memberId}/routines")
     public ResponseEntity<ResponseMessage> saveRoutine(@RequestBody RoutineRequestDto requestDto, @PathVariable Long memberId) {
         Member member = memberService.findById(memberId); // 원래는 인증으로 빼야 함.
         requestDto.getMemberList().add(memberId);
@@ -45,7 +46,21 @@ public class RoutineController {
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_GET_ROUTINE, routineService.getRoutineDetail(routineId, member)));
     }
 
-    @PostMapping("/{memberId}/routine/{routineId}/complete")
+    @PutMapping("/{memberId}/routines/{routineId}") // 멤버 변경 X
+    public ResponseEntity<ResponseMessage> updateRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineUpdateRequestDto requestDto) {
+        Member member = memberService.findById(memberId);
+        routineService.updateAllRoutine(routineMapper.toEntity(routineId, requestDto, member), requestDto.getDayList());
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_UPDATE));
+    }
+
+    @DeleteMapping("/{memberId}/routines/{routineId}")
+    public ResponseEntity<ResponseMessage> deleteRoutine(@PathVariable Long memberId, @PathVariable Long routineId) {
+        Member member = memberService.findById(memberId);
+        routineCompletedService.deleteRoutine(routineId, member);
+        return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_DELETE));
+    }
+
+    @PostMapping("/{memberId}/routines/{routineId}/complete")
     public ResponseEntity<ResponseMessage> completeRoutine(@PathVariable Long memberId, @PathVariable Long routineId, @RequestBody RoutineCreateDto createDto) {
         routineService.createRoutine(memberId, routineId, createDto);
         return ResponseEntity.ok().body(ResponseMessage.of(SuccessMessage.SUCCESS_COMPLETE_ROUTINE));

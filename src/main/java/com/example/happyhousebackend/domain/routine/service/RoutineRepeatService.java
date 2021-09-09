@@ -10,10 +10,12 @@ import com.example.happyhousebackend.domain.routine.repository.RoutineCompletedR
 import com.example.happyhousebackend.domain.routine.repository.RoutineRepeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +24,7 @@ public class RoutineRepeatService {
     private final RoutineRepeatRepository routineRepeatRepository;
     private final RoutineCompletedRepository routineCompletedRepository;
 
+    @Transactional
     public void saveRepeatDay(Routine routine, List<Integer> dayList) {
         dayList.forEach(day -> routineRepeatRepository.save(
                 RoutineRepeat.builder()
@@ -31,10 +34,18 @@ public class RoutineRepeatService {
         );
     }
 
-    public List<Integer> getDayList(Routine routine) {
-        return routineRepeatRepository.findAllByRoutine(routine).stream().map(RoutineRepeat::getDay).collect(Collectors.toList());
+    @Transactional
+    public void updateRepeatDay(Routine routine, List<Integer> dayList) {
+        routineRepeatRepository.deleteRoutineRepeatsByRoutine(routine);
+        saveRepeatDay(routine, dayList);
     }
 
+    @Transactional(readOnly = true)
+    public List<Integer> getDayList(Routine routine) {
+        return routineRepeatRepository.findAllByRoutine(routine).stream().map(RoutineRepeat::getDay).collect(toList());
+    }
+
+    @Transactional(readOnly = true)
     public RoutineListDto getRoutineRepeatList(Member member) {
         List<RoutineRepeatDto> repeatRoutineList = new ArrayList<>();
         List<RoutineRepeatDto> notRepeatRoutineList = new ArrayList<>();
@@ -46,11 +57,11 @@ public class RoutineRepeatService {
                         repeatRoutineList.add(RoutineRepeatDto.builder()
                                 .id(routine.getId())
                                 .title(routine.getTitle())
-                                .dayList(routine.getRoutineRepeatList().stream().map(RoutineRepeat::getDay).collect(Collectors.toList()))
+                                .dayList(routine.getRoutineRepeatList().stream().map(RoutineRepeat::getDay).collect(toList()))
                                 .subTitle(routine.getSubTitle())
                                 .time(routine.getTime())
                                 .requesterImage(routine.getMember().getImage())
-                                .memberList(routine.getRoutineCompletedList().stream().map(RoutineCompleted::getMember).map(Member::getImage).collect(Collectors.toList()))
+                                .memberList(routine.getRoutineCompletedList().stream().map(RoutineCompleted::getMember).map(Member::getImage).collect(toList()))
                                 .date(routine.getStartDate())
                                 .build()
                         );
@@ -61,7 +72,7 @@ public class RoutineRepeatService {
                                 .subTitle(routine.getSubTitle())
                                 .time(routine.getTime())
                                 .requesterImage(routine.getMember().getImage())
-                                .memberList(routine.getRoutineCompletedList().stream().map(RoutineCompleted::getMember).map(Member::getImage).collect(Collectors.toList()))
+                                .memberList(routine.getRoutineCompletedList().stream().map(RoutineCompleted::getMember).map(Member::getImage).collect(toList()))
                                 .date(routine.getStartDate())
                                 .build()
                         );
@@ -69,6 +80,6 @@ public class RoutineRepeatService {
                 });
 
         return new RoutineListDto(repeatRoutineList, notRepeatRoutineList);
-
     }
+
 }

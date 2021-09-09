@@ -56,4 +56,12 @@ public class RoutineCompletedService {
         return routineList;
     }
 
+    @Transactional
+    public void deleteRoutine(Long routineId, Member member) {
+        RoutineCompleted routine = routineCompletedRepository.findByRoutineIdAndMember(routineId, member)
+                .orElseThrow(() -> new IllegalArgumentException("루틴이 존재하지 않습니다."));
+
+        routineCompletedRepository.delete(routine);
+    }
+
 }
