@@ -21,12 +21,14 @@ public class Member {
 
     private String nickname;
 
+    @Column(nullable = false)
     private String email;
 
     private String intro;
 
     private String image;
 
+    @Column(nullable = false)
     private int socialType;
 
     private String socialId;
@@ -45,6 +47,13 @@ public class Member {
 
     public void changeImage(String image) {
         this.image = image;
+    }
+
+    public Member update(String nickname, String image) {
+        this.nickname = nickname;
+        this.image = image;
+
+        return this;
     }
 
     public static MemberDto entityToDto(Member entity) {
