@@ -11,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -42,18 +40,7 @@ public class RoutineCompletedService {
 
     @Transactional(readOnly = true)
     public List<RoutineCommentDto> getRoutineCommentList(String title, Member member) {
-        List<Object[]> resultList = routineCompletedRepository.findTest(title, member.getFamily().getId());
-        List<RoutineCommentDto> routineList = new ArrayList<>();
-        resultList.forEach(objects ->
-                routineList.add(RoutineCommentDto.builder()
-                        .nickname((String) objects[0])
-                        .memberImage((String) objects[1])
-                        .routineImage((String) objects[2])
-                        .comment((String) objects[3])
-                        .date((LocalDateTime) objects[4])
-                        .build())
-        );
-        return routineList;
+        return routineCompletedRepository.findRoutineCommentDtoList(title, member.getFamily().getId());
     }
 
     @Transactional
