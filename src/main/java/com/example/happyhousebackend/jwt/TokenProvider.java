@@ -1,5 +1,6 @@
 package com.example.happyhousebackend.jwt;
 
+import com.example.happyhousebackend.jwt.dto.TokenDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
 public class TokenProvider implements InitializingBean {
 
     private static final String AUTHORITIES_KEY = "auth";
-    private static final Long ACCESS_TOKEN_VALID_TIME = 60 * 60 * 24L; // 1일
+    private static final Long ACCESS_TOKEN_VALID_TIME = 60 * 60 * 1L; // 1시간
     private static final Long REFRESH_TOKEN_VALID_TIME = 60 * 60 * 24 * 7L; // 7일
 
     private final String secret;
@@ -47,7 +48,25 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(kyeBytes);
     }
 
-    /* Authentication 객체의 권한정보를 이용해서 토큰 생성 => accessToken, refreshToken */
+    public TokenDto createTokenDto(String uid) {
+        return new TokenDto(
+                createToken(uid, ACCESS_TOKEN_VALID_TIME),
+                createToken(uid, REFRESH_TOKEN_VALID_TIME));
+    }
+
+    public String createToken(String uid, long tokenTime) {
+        final Claims claims = Jwts.claims().setSubject(uid);
+        final long now = (new Date()).getTime();
+        final Date validity = new Date(now + tokenTime);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(new Date())
+                .setExpiration(validity)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .compact();
+    }
+
     public String createToken(final Authentication authentication, final long validTime) {
         final String authorities = authentication.getAuthorities()
                 .stream()
@@ -60,31 +79,36 @@ public class TokenProvider implements InitializingBean {
                 .setSubject(authentication.getName())     // payload "sub": "name"
                 .claim(AUTHORITIES_KEY, authorities)      // payload "auth": "ROLE_USER"
                 .signWith(key, SignatureAlgorithm.HS512)  // header "alg": "HS512"
-                .setIssuedAt(new Date()) // 생성일
-                .setExpiration(validity) // 만료일
+                .setIssuedAt(new Date())
+                .setExpiration(validity)
                 .compact();
     }
 
-    public String issueAccessToken(final Authentication authentication) {
-        return createToken(authentication, ACCESS_TOKEN_VALID_TIME);
-    }
-
-    public String issueRefreshToken(final Authentication authentication) {
-        return createToken(authentication, REFRESH_TOKEN_VALID_TIME);
-    }
-
-    /* Token으로 Authentication 객체 생성 */
-    public Authentication getAuthentication(final String token) {
+    public Authentication getAuthentication(String token) {
         final Claims claims = extractClaim(token);
-
         final Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
-
         final User principal = new User(claims.getSubject(), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+    }
+
+    private Claims extractClaim(String token) throws ExpiredJwtException {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public String getUid(String token) {
+        return Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     /* Token 유효성 검사 */
@@ -111,14 +135,6 @@ public class TokenProvider implements InitializingBean {
     public Boolean isTokenExpired(String token) {
         final Date expiration = extractClaim(token).getExpiration();
         return expiration.before(new Date());
-    }
-
-    private Claims extractClaim(String token) throws ExpiredJwtException {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
     }
 
 }

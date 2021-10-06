@@ -1,5 +1,6 @@
 package com.example.happyhousebackend.jwt;
 
+import com.example.happyhousebackend.global.message.JwtMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,10 +14,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/* Request에서 전달된 JWT 토큰 검증 */
 @Slf4j
 public class JwtFilter extends GenericFilterBean {
-
-    public static final String AUTHORIZATION_HEADER = "Authorization";
 
     private final TokenProvider tokenProvider;
 
@@ -44,7 +44,7 @@ public class JwtFilter extends GenericFilterBean {
 
     /* Request Header에서 Token 정보 꺼내오기 */
     private String resolveToken(HttpServletRequest httpServletRequest) {
-        final String bearerToken = httpServletRequest.getHeader(AUTHORIZATION_HEADER);
+        final String bearerToken = httpServletRequest.getHeader(JwtMessage.ACCESS_TOKEN_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
