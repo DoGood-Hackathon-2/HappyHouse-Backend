@@ -2,7 +2,11 @@ package com.example.happyhousebackend.domain.member.entity;
 
 import com.example.happyhousebackend.domain.family.entity.Family;
 import com.example.happyhousebackend.domain.member.dto.MemberDto;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -29,9 +33,11 @@ public class Member {
     private String image;
 
     @Column(nullable = false)
-    private int socialType;
+    private String socialType;
 
     private String socialId;
+
+    private String refreshToken;
 
     @ManyToOne
     @JoinColumn(name = "family_id")
@@ -47,6 +53,10 @@ public class Member {
 
     public void changeImage(String image) {
         this.image = image;
+    }
+
+    public void updateRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
     public Member update(String nickname, String image) {
